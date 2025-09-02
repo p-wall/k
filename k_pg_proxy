@@ -240,7 +240,7 @@ def handle_connection(client_socket, connection_number)
 
   port_forward_port = PROXY_PORT + connection_number
   port_forward_pid = spawn(
-    "kubectl --context #{CONTEXT} port-forward #{primary_pod} #{port_forward_port}:5432",
+    "kubectl --context #{CONTEXT} port-forward #{primary_pod} #{port_forward_port}:5432 --address 0.0.0.0",
     err: File::NULL,
   )
   Process.detach(port_forward_pid)
